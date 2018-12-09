@@ -54,6 +54,7 @@ class TeamsController < ApplicationController
   end
 
   def team_params
+    # あればteamの値が入る
     params.fetch(:team, {}).permit %i[name icon icon_cache owner_id keep_team_id]
   end
 end

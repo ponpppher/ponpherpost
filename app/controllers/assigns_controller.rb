@@ -19,6 +19,8 @@ class AssignsController < ApplicationController
       redirect_to team_url(params[:team_id]), notice: 'リーダーは削除できません。'
     elsif Assign.where(user_id: assigned_user.id).count == 1
       redirect_to team_url(params[:team_id]), notice: 'このユーザーはこのチームにしか所属していないため、削除できません。'
+    elsif current_user != assign.team.owner && current_user != assign.user
+      redirect_to team_url(params[:team_id]), notice: 'チームのリーダーか、ユーザー自身でない場合、削除できません。'
     else
       another_team = Assign.find_by(user_id: assigned_user.id).team
       change_keep_team(assigned_user, another_team) if assigned_user.keep_team_id == assign.team_id
