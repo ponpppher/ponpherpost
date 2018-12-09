@@ -12,8 +12,6 @@ class AssignsController < ApplicationController
     end
   end
 
-  def edit;end
-  
   def update
     team = Team.friendly.find(params[:team_id])
 
