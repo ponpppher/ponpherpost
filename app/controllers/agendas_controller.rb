@@ -27,9 +27,6 @@ class AgendasController < ApplicationController
 
     agenda_user = agenda.user_id
     owner_id = agenda.team.owner_id
-    puts "agenda_user:#{agenda_user}"
-    puts "owener_id:#{owner_id}"
-    puts "current_user:#{current_user.id}"
 
     if current_user.id != agenda_user && current_user.id != owner_id
       redirect_to dashboard_url, notice: 'agendaの作成者及びチームリーダーのみ削除できます。'
